@@ -22,6 +22,8 @@ public class _1 {
         return result;
     }
 
+    // 배열 안에 값이 있는지 확인
+    // Arrays.asList(nums).contains(target); 하면 될텐데 왜 안되는거지
     public static boolean hasValue(int [] nums, int target) {
         for(int i : nums) {
             if(i == target) {
