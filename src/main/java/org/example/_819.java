@@ -23,6 +23,7 @@ public class _819 {
         }
         HashMap<String, Integer> hashMap = new HashMap<>();
 
+
         Iterator<String> iterator = targetList.iterator();
         while(iterator.hasNext()) {
             String str = iterator.next();

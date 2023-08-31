@@ -1,47 +1,56 @@
 package org.example;
 
-import java.util.Arrays;
-import java.util.Comparator;
+import java.util.*;
 
 public class _937 {
     public static void main(String[] args) {
-        reorderLogFiles(new String[]{"a1 9 2 3 1","g1 act car","zo4 4 7","ab1 off key dog","a8 act zoo","a2 act car"});
+        reorderLogFiles(new String[]{"j mo", "5 m w", "g 07", "o 2 0", "t q h"});
     }
 
     public static String[] reorderLogFiles(String[] logs) {
-        Arrays.sort(logs, new Comparator<String>() {
+        List<String> letters = new ArrayList<>();
+        List<String> digits = new ArrayList<>();
+
+        for (String log : logs) {
+            String identifier = log.split(" ")[0];
+            String logWoIdentifier = log.substring(identifier.length());
+
+            if (isNumeric(logWoIdentifier)) {
+                digits.add(log);
+            } else {
+                letters.add(log);
+            }
+        }
+        Collections.sort(letters, new Comparator<>() {
             @Override
             public int compare(String o1, String o2) {
-                String [] strArray1 = o1.split(" ");
-                String [] strArray2 = o2.split(" ");
+                String identifier1 = o1.split(" ")[0];
+                String logWoIdentifier1 = o1.substring(identifier1.length());
 
-                boolean isDigit1 = Character.isDigit(strArray1[1].charAt(0));
-                boolean isDigit2 = Character.isDigit(strArray2[1].charAt(0));
+                String identifier2 = o2.split(" ")[0];
+                String logWoIdentifier2 = o2.substring(identifier2.length());
 
-                if(!isDigit1 && !isDigit2) {
-                    if(strArray1[1].compareTo(strArray2[1]) == 0) {
-                        return 0;
-                    }
-                    else {
-                        return strArray1[1].compareTo(strArray2[1]);
-                    }
+                if (logWoIdentifier1.compareTo(logWoIdentifier2) == 0) {
+                    return identifier1.compareTo(identifier2);
                 }
-                else if(isDigit1) {
-                    return 1;
-                }
-                else if(isDigit2){
-                    return -1;
-                }
-                return 0;
+
+                return logWoIdentifier1.compareTo(logWoIdentifier2);
             }
         });
 
-        System.out.println(logs);
 
-        for(String log : logs) {
-            System.out.println(log);
+        letters.addAll(digits);
+
+        return letters.toArray(new String[0]);
+    }
+
+    public static boolean isNumeric(String target) {
+
+        for (char c : target.replaceAll(" ", "").toCharArray()) {
+            if (!Character.isDigit(c)) {
+                return false;
+            }
         }
-
-        return logs;
+        return true;
     }
 }

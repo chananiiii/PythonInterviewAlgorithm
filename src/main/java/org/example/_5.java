@@ -1,41 +1,55 @@
 package org.example;
 
-import java.util.LinkedList;
+import java.util.*;
 
 public class _5 {
+    public static String result = "";
+    public static int max = 0;
+
     public static void main(String[] args) {
-        longestPalindrome("babad");
+        longestPalindrome("aacabdkacaa");
     }
 
-    public static LinkedList <String> memoization = new LinkedList<>();
     public static String longestPalindrome(String s) {
-        // babad
-        // cbbdd
-        logic(s, "", 0);
+        result = "";
+        max = 0;
 
-
-        return s;
+        // 각각의 index 에서 확장 진행
+        for(int i=0; i<s.length(); i++) {
+            expand(s, i, i);
+        }
+        
+        return result;
     }
 
-    public static void logic(String s, String presentStr, int seq) {
-        if(s.length()-1 == seq) {
-            return;
+    public static void expand(String s, int left, int right) {
+        if (max < right+1 - left) {
+            max = right+1 - left;
+            result = s.substring(left, right+1);
         }
-
-        for (int i = 0; i < s.length(); i++) {
-            presentStr += s.substring(i, i+1);
-        }
-    }
-
-    public static boolean isPalindrome(String s) {
-        for(int i=0; i<s.length()/2; i++) {
-            if (s.substring(i, i + 1).equals(s.substring(s.length() - i - 1))) {
-
-            } else {
-                return false;
+        // 값이 같을때, 좌, 우측으로 각각 확장시도 
+        // 홀수갯수시작
+        if(left == right) {
+            // 좌측으로 확장시도
+            if (left-1 > -1) {
+                // 좌측으로 확장 될 값이랑, 우측 비교 후 확장 진행
+                if (s.substring(left-1, left).equals(s.substring(right, right+1))) {
+                    expand(s, left-1, right);
+                }
+            }
+            // 우측으로 확장시도
+            if (right+1 < s.length()) {
+                if (s.substring(left, left+1).equals(s.substring(right+1, right+2))) {
+                    expand(s, left, right+1);
+                }
             }
         }
-
-        return true;
+        // 짝수갯수 시작
+        // 양쪽으로 확장시도
+        if (left-1 > -1 && right+1 < s.length()) {
+            if (s.substring(left-1, left).equals(s.substring(right+1, right+2))) {
+                expand(s, left-1, right+1);
+            }
+        }
     }
 }
