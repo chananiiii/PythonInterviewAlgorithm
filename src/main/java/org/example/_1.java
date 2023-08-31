@@ -9,13 +9,12 @@ public class _1 {
     public static int[] twoSum(int[] nums, int target) {
         int [] result = new int[2];
 
+
         for(int i=0; i<nums.length; i++) {
-            int second = Arrays.binarySearch(nums, target-nums[i]);
-            if(hasValue(nums, target-nums[i]) && second != i && second > -1) {
+            int second = indexOf(nums, target-nums[i]);
+            if(hasValue(nums, target-nums[i]) && i != second ) {
                 result[0] = i;
                 result[1] = second;
-                System.out.println(result[0]);
-                System.out.println(result[1]);
             }
         }
 
@@ -30,5 +29,14 @@ public class _1 {
             }
         }
         return false;
+    }
+
+    public static int indexOf(int [] nums, int target) {
+        for(int i=0; i<nums.length; i++) {
+            if(nums[i] == target) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
