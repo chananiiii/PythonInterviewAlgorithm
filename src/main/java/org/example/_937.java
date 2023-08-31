@@ -5,7 +5,7 @@ import java.util.Comparator;
 
 public class _937 {
     public static void main(String[] args) {
-        reorderLogFiles(new String[]{"dig1 8 1 5 1","let1 art can","dig2 3 6","let2 own kit dig","let3 art zero"});
+        reorderLogFiles(new String[]{"a1 9 2 3 1","g1 act car","zo4 4 7","ab1 off key dog","a8 act zoo","a2 act car"});
     }
 
     public static String[] reorderLogFiles(String[] logs) {
@@ -20,7 +20,7 @@ public class _937 {
 
                 if(!isDigit1 && !isDigit2) {
                     if(strArray1[1].compareTo(strArray2[1]) == 0) {
-                        return strArray1[0].compareTo(strArray2[0]);
+                        return 0;
                     }
                     else {
                         return strArray1[1].compareTo(strArray2[1]);
@@ -35,6 +35,12 @@ public class _937 {
                 return 0;
             }
         });
+
+        System.out.println(logs);
+
+        for(String log : logs) {
+            System.out.println(log);
+        }
 
         return logs;
     }
