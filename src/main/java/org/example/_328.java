@@ -10,10 +10,10 @@ public class _328 {
         cursor2 = resultNode;
 
         // 전제 노드 반복
-        while(head != null) {
+        while (head != null) {
             int a = head.val;
             // 짝수 노드가 없다면
-            if(head.next == null) {
+            if (head.next == null) {
                 // cursor1에 넣고 끝내기
                 ListNode temp = cursor1.next;
                 cursor1.next = new ListNode(a);
@@ -38,4 +38,5 @@ public class _328 {
         }
 
         return resultNode.next;
+    }
 }
