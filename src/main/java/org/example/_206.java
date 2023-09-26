@@ -5,8 +5,8 @@ public class _206 {
         if (head == null) {
             return head;
         }
+
         ListNode cursor = new ListNode();
-        ListNode lastNode =  cursor;
         ListNode nextTempNode = null;
         int i = 0;
         while(head != null) {
